@@ -6,24 +6,22 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:18:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/07/15 22:08:38 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/07/26 07:39:09 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 int main(int ac, char **av) {
     int		i;
 	int		j;
-    string	str;
+    std::string	str;
 
 	(void)ac;
 	j = 1;
 	if (!av[1]) {
-		cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (0);
 	}
 	while (av[j]) {
@@ -33,8 +31,9 @@ int main(int ac, char **av) {
 			str[i] = toupper(str[i]);
 			i++;
 		}
-		cout << str << endl;
+		std::cout << str;
 		j++;
 	}
+	std::cout << "\n";
     return (0);
 }

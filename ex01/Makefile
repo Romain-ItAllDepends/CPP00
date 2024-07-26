@@ -1,6 +1,8 @@
 NAME=phonebook
 
-MY_SOURCES=	phonebook.cpp
+MY_SOURCES=	phonebook.cpp \
+			setter.cpp \
+			getter.cpp
 		
 red='\033[0;31m'
 green='\033[0;32m'
