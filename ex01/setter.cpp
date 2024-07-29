@@ -6,33 +6,28 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:57:45 by rgobet            #+#    #+#             */
-/*   Updated: 2024/07/26 11:27:02 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/07/29 07:26:50 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-void	Contact::setFirstName(std::string _firstName) {
-	Contact	contact;
-	contact.firstName = _firstName;
+void	Contact::setFirstName(std::string firstName) {
+	this->_firstName = firstName;
 }
 
-void	Contact::setLastName(std::string _lastName) {
-	Contact	contact;
-	contact.lastName = _lastName;
+void	Contact::setLastName(std::string lastName) {
+	this->_lastName = lastName;
 }
 
-void	Contact::setNickName(std::string _nickName) {
-	Contact	contact;
-	contact.nickName = _nickName;
+void	Contact::setNickName(std::string nickName) {
+	this->_nickName = nickName;
 }
 
-void	Contact::setPhoneNumber(std::string _phoneNumber) {
-	Contact	contact;
-	contact.phoneNumber = _phoneNumber;
+void	Contact::setPhoneNumber(std::string phoneNumber) {
+	this->_phoneNumber = phoneNumber;
 }
 
-void	Contact::setSecret(std::string _secret) {
-	Contact	contact;
-	contact.secret = _secret;
+void	Contact::setSecret(std::string secret) {
+	this->_secret = secret;
 }

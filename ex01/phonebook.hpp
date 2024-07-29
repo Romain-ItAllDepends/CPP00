@@ -6,38 +6,41 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 21:25:17 by rgobet            #+#    #+#             */
-/*   Updated: 2024/07/26 11:33:50 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:26:51 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include <iostream>
+# include <string>
+# include <locale>
 
 class Contact {
 	private :
+
+	std::string	_firstName;
+	std::string	_lastName;
+	std::string	_nickName;
+	std::string	_phoneNumber;
+	std::string	_secret;
 	
-	int		index;
-	std::string	firstName;
-	std::string	lastName;
-	std::string	nickName;
-	std::string	phoneNumber;
-	std::string	secret;
-
 	public :
-	Contact	addContact();
 
-	void	setFirstName(std::string _firstName);
-	void	setLastName(std::string _lastName);
-	void	setNickName(std::string _nickName);
-	void	setPhoneNumber(std::string _phoneNumber);
-	void	setSecret(std::string _secret);
+	Contact(void);
+	~Contact(void);
 
-	static std::string	getFirstName(void);
-	static std::string	getLastName(void);
-	static std::string	getNickName(void);
-	static std::string	getPhoneNumber(void);
-	static std::string	getSecret(void);
+	void	setFirstName(std::string firstName);
+	void	setLastName(std::string lastName);
+	void	setNickName(std::string nickName);
+	void	setPhoneNumber(std::string phoneNumber);
+	void	setSecret(std::string secret);
+
+	std::string	getFirstName(void);
+	std::string	getLastName(void);
+	std::string	getNickName(void);
+	std::string	getPhoneNumber(void);
+	std::string	getSecret(void);
 };
 
 #endif

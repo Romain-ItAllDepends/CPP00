@@ -24,7 +24,7 @@ RM=rm -f
 
 CC=g++
 ARRC=ar -rcs
-FLAGS=-Wall -Werror -Wextra -std=c++98 -g
+FLAGS=-Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
