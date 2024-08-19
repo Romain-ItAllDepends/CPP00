@@ -22,8 +22,7 @@ MY_OBJECTS=$(MY_SOURCES:.cpp=.o)
 
 RM=rm -f
 
-CC=g++
-ARRC=ar -rcs
+CC=c++
 FLAGS=-Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)

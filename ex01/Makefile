@@ -1,8 +1,8 @@
 NAME=phonebook
 
-MY_SOURCES=	phonebook.cpp \
-			setter.cpp \
-			getter.cpp
+MY_SOURCES=	main.cpp \
+			Phonebook.cpp \
+			Contact.cpp
 		
 red='\033[0;31m'
 green='\033[0;32m'
@@ -24,9 +24,8 @@ MY_OBJECTS=$(MY_SOURCES:.cpp=.o)
 
 RM=rm -f
 
-CC=g++
-ARRC=ar -rcs
-FLAGS=-Wall -Werror -Wextra -std=c++98 -g
+CC=c++
+FLAGS=-Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 

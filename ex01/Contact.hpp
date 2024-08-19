@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 21:25:17 by rgobet            #+#    #+#             */
-/*   Updated: 2024/07/29 11:26:51 by rgobet           ###   ########.fr       */
+/*   Created: 2024/08/06 09:34:56 by rgobet            #+#    #+#             */
+/*   Updated: 2024/08/06 11:04:36 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-# include <iostream>
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 # include <string>
-# include <locale>
 
 class Contact {
 	private :

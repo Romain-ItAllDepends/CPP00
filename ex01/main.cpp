@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 22:11:07 by rgobet            #+#    #+#             */
-/*   Updated: 2024/07/29 15:03:23 by rgobet           ###   ########.fr       */
+/*   Created: 2024/08/19 15:59:36 by rgobet            #+#    #+#             */
+/*   Updated: 2024/08/19 16:05:49 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-
-Contact::Contact() {
-	Contact::_firstName = "";
-	Contact::_lastName = "";
-	Contact::_nickName = "";
-	Contact::_phoneNumber = "";
-	Contact::_secret = "";
-}
-
-Contact::~Contact() {
-	std::cout << "BOUM !!!" << std::endl;
-}
+#include "Phonebook.hpp"
 
 void	search_contact(Contact contact) {
 	std::cout << "First name : " << contact.getFirstName() << std::endl;
@@ -38,18 +26,44 @@ int	check_phone_number(std::string str) {
 	i = 0;
 	while (str.empty() == false && str[i])
 	{
-		if (std::isdigit(str[i]))
-			return (0);
+		if (!std::isdigit(str[i]))
+		{
+			std::cout << "You can only use numbers !" << std::endl;
+			std::cout << "Phone number : ";
+			return (1);
+		}
 		i++;
 	}
-	std::cout << "Vous ne pouvez entrer que des chiffres !" << std::endl;
-	std::cout << "Phone number : ";
-	return (1);
+	return (0);
+}
+
+int	check_index_contact(std::string cmd, Phonebook book) {
+	int	i;
+	int	tmp;
+
+	i = (cmd[0]) - 48;
+	tmp = book.getIndex();
+	if (i < 0 || i >= 8 || cmd.length() > 1 || cmd.empty())
+	{
+		std::cout << "You can only use numbers !" << std::endl;
+		std::cout << "Index of the contact : ";
+		return (1);
+	}
+	if (i > tmp)
+	{
+		std::cout << "You can only display an existant contact !" << std::endl;
+		std::cout << "Index of the contact : ";
+		return (1);
+	}
+	return (0);
 }
 
 void	add_contact(Contact *contact, int i) {
+	static int	index;
 	std::string	str;
 
+	if (index >= 8)
+		i = index % 8;
 	std::cout << "First name : ";
 	while (str.size() == 0)
 		std::getline(std::cin, str);
@@ -79,6 +93,7 @@ void	add_contact(Contact *contact, int i) {
 		std::getline(std::cin, str);
 	contact[i].setSecret(str);
 	std::cin.clear();
+	index++;
 }
 
 void	display_contact(Contact *contact, int nb_contact) {
@@ -86,33 +101,33 @@ void	display_contact(Contact *contact, int nb_contact) {
 	std::string	str;
 
 	i = 0;
-	std::cout << "\n" << " _________ __________ __________ __________" << std::endl;
-	std::cout << "|         |          |          |          |" << std::endl;
-	std::cout << "|  Index  |First name|Last name | Nickname |" << std::endl;
-	std::cout << "|_________|__________|__________|__________|" << std::endl;
+	std::cout << "\n" << " __________ __________ __________ __________" << std::endl;
+	std::cout << "|          |          |          |          |" << std::endl;
+	std::cout << "|     Index|First name|Last  name| Nickname |" << std::endl;
+	std::cout << "|__________|__________|__________|__________|" << std::endl;
 	while (i < nb_contact) {
-		std::cout << "|         |          |          |          |" << std::endl;
-		std::cout << "|" << i << "        |";
+		std::cout << "|          |          |          |          |" << std::endl;
+		std::cout << "|" << std::setw(10) << i << "|";
 		str = contact[i].getFirstName();
 		if (str.size() <= 10)
-			std::cout << str.insert(str.size(), 10 - str.size(), ' ');
+			std::cout << str.insert(0, 10 - str.size(), ' ');
 		else
 			std::cout << str.insert(9, 1, '.').erase(10);
 		str = contact[i].getLastName();
 		if (str.size() <= 10)
-			std::cout << "|" << str.insert(str.size(), 10 - str.size(), ' ');
+			std::cout << "|" << str.insert(0, 10 - str.size(), ' ');
 		else
 			std::cout << "|" << str.insert(9, 1, '.').erase(10);
 		str = contact[i].getNickName();
 		if (str.size() <= 10)
-			std::cout << "|" << str.insert(str.size(), 10 - str.size(), ' ');
+			std::cout << "|" << str.insert(0, 10 - str.size(), ' ');
 		else
 			std::cout << "|" << str.insert(9, 1, '.').erase(10);
 		std::cout << "|" << std::endl;
 		i++;
 	}
 	if (i != 0)
-		std::cout << "|_________|__________|__________|__________|\n" << std::endl;
+		std::cout << "|__________|__________|__________|__________|\n" << std::endl;
 }
 
 void	display_start(void) {
@@ -128,36 +143,30 @@ void	display_start(void) {
 }
 
 int	main(void) {
-	int			i;
 	std::string	cmd;
-	Contact		contact[8];
-	int			index_contact;
+	Phonebook	phonebook;
 
-	i = 0;
-	index_contact = -1;
 	display_start();
 	while (42) {
 		std::cout << "> ";
-		std::cin >> cmd;
+		std::getline(std::cin, cmd);
 		if (cmd == "EXIT")
 			return (0);
 		else if (cmd == "ADD")
-			add_contact(contact, i++);
-		else if (cmd == "SEARCH" && i > 0)
 		{
-			std::cout << "Index du contact : " << std::endl;
-			while (!(std::cin >> index_contact)
-				|| index_contact < 0 || index_contact >= 8 || index_contact >= i)
-			{
-				std::cout << "L'index maximum est 7 ou n'existe pas !" << std::endl;
-				std::cout << "Index du contact : " << std::endl;
-				std::cin.clear();
-			}
-			search_contact(contact[index_contact]);
+			add_contact(phonebook.getContacts(), phonebook.getIndex());
+			if (phonebook.getIndex() < 8)
+				phonebook.setIndex(phonebook.getIndex() + 1);
+		}
+		else if (cmd == "SEARCH" && phonebook.getIndex() > 0)
+		{
+			display_contact(phonebook.getContacts(), phonebook.getIndex());
+			std::cout << "Index of the contact : " << std::endl;
+			while (!(std::getline(std::cin, cmd)) || check_index_contact(cmd, phonebook))
+				continue ;
+			search_contact(phonebook.getContacts()[(cmd[0]) - 48]);
 			std::cin.clear();
 		}
-		if (i > 0)
-			display_contact(contact, i);
 		std::cin.clear();
 	}
 	return (0);

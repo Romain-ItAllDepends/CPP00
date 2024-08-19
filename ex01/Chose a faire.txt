@@ -1,6 +1,0 @@
-Faire un nouveau header pour la classe.
-Faire des correc blanches.
-Faire en sorte que quand le numero de telephone comporte une lettre réenvoie le message
-Phone number :
-
-Traduire tout les messages en anglais ou en français mais le rendre uniforme.
